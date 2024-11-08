@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Ubícanos</title>
+</head>
+<body>
+    <div class="container mt-5 mb-5">
+        <div class="titulo">
+            <h1>¿Dónde nos encuentras?</h1>
+            <h3>Brindamos atención continua para tu comodidad</h3>
+        </div>
+        
+        <div class="mapa-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.1457791426046!2d-70.31965642392065!3d-18.477054794715773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915aa912033b9159%3A0x848b2109379a6853!2sLutech!5e0!3m2!1ses-419!2scl!4v1731099997974!5m2!1ses-419!2scl" 
+                width="600" height="450" style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade" 
+            ></iframe>
+        </div>    
+    </div>
+    
+    <div class="form-container">
+        <form [formGroup]="ubicanosForm" (ngSubmit)="onSubmit()">
+            <h2>Si deseas agendar una cita</h2>
+            <h5>Por favor, completa el siguiente formulario para reservar tu hora</h5>
+        
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Escribe tu nombre" required>
+                <div *ngIf="ubicanosForm.get('nombre')?.invalid && ubicanosForm.get('nombre')?.touched" class="text-danger">
+                  El nombre es obligatorio.
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" formControlName="apellido" placeholder="Escribe tu apellido" required>
+                <div *ngIf="ubicanosForm.get('apellido')?.invalid && ubicanosForm.get('apellido')?.touched" class="text-danger">
+                  El apellido es obligatorio.
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Escribe tu correo electrónico" required>
+                <div *ngIf="ubicanosForm.get('email')?.invalid && ubicanosForm.get('email')?.touched" class="text-danger">
+                  El correo es obligatorio y debe ser válido.
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" formControlName="telefono" placeholder="Escribe tu número de teléfono" required>
+                <div *ngIf="ubicanosForm.get('telefono')?.invalid && ubicanosForm.get('telefono')?.touched" class="text-danger">
+                  El teléfono es obligatorio y debe ser numérico.
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="mensaje" class="form-label">Motivo de tu visita</label>
+                <textarea class="form-control" id="mensaje" formControlName="mensaje" rows="3" placeholder="Escribe el motivo de tu visita" required></textarea>
+                <div *ngIf="ubicanosForm.get('mensaje')?.invalid && ubicanosForm.get('mensaje')?.touched" class="text-danger">
+                  El mensaje es obligatorio.
+                </div>
+            </div>
+        
+            <button type="submit" class="btn btn-primary" [disabled]="ubicanosForm.invalid">Enviar</button>
+            <div *ngIf="mensajeConfirmacion" class="mensaje-confirmacion" style="margin-top: 20px; color: blue; font-weight: bold;">
+                {{ mensajeConfirmacion }}
+            </div>
+        </form>
+    </div>
+</body>
+</html>

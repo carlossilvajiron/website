@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <title>Contacto</title>
+</head>
+<body>
+    <div class="container mt-5 mb-5">
+        <div class="titulo">
+            <h1>Mercy Developer</h1>
+            <p>¡Conéctate con nosotros a través de nuestras redes sociales!</p>
+        </div>
+        <div class="form-container">
+            <form [formGroup]="ubicanosForm" (ngSubmit)="onSubmit()">
+                <h2>Estamos aquí para ayudarte</h2>
+                <h5>Por favor, completa este formulario para ponerte en contacto con nosotros.</h5>
+            
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Tu Nombre</label>
+                    <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Ingresa tu nombre completo" required>
+                    <div *ngIf="ubicanosForm.get('nombre')?.invalid && ubicanosForm.get('nombre')?.touched" class="text-danger">
+                      Este campo es obligatorio.
+                    </div>
+                  </div>
+            
+                  <div class="mb-3">
+                    <label for="apellido" class="form-label">Tu Apellido</label>
+                    <input type="text" class="form-control" id="apellido" formControlName="apellido" placeholder="Ingresa tu apellido" required>
+                    <div *ngIf="ubicanosForm.get('apellido')?.invalid && ubicanosForm.get('apellido')?.touched" class="text-danger">
+                      El apellido es necesario.
+                    </div>
+                  </div>
+            
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Escribe tu correo electrónico" required>
+                    <div *ngIf="ubicanosForm.get('email')?.invalid && ubicanosForm.get('email')?.touched" class="text-danger">
+                      Asegúrate de ingresar un correo válido.
+                    </div>
+                  </div>
+            
+                  <div class="mb-3">
+                    <label for="telefono" class="form-label">Número de Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" formControlName="telefono" placeholder="Introduce tu número de teléfono" required>
+                    <div *ngIf="ubicanosForm.get('telefono')?.invalid && ubicanosForm.get('telefono')?.touched" class="text-danger">
+                      El teléfono es obligatorio y debe ser numérico.
+                    </div>
+                  </div>
+            
+                  <div class="mb-3">
+                    <label for="mensaje" class="form-label">¿En qué podemos ayudarte?</label>
+                    <textarea class="form-control" id="mensaje" formControlName="mensaje" rows="3" placeholder="Escribe tu mensaje o consulta" required></textarea>
+                    <div *ngIf="ubicanosForm.get('mensaje')?.invalid && ubicanosForm.get('mensaje')?.touched" class="text-danger">
+                      No olvides escribir tu mensaje.
+                    </div>
+                  </div>
+            
+                  <button type="submit" class="btn btn-primary" [disabled]="ubicanosForm.invalid">Enviar Mensaje</button>
+                  <div *ngIf="mensajeConfirmacion" class="mensaje-confirmacion" style="margin-top: 20px; color: blue; font-weight: bold;">
+                    {{ mensajeConfirmacion }}
+                  </div>
+            </form>
+        </div>
+        
+    </div>
+</body>
+</html>
